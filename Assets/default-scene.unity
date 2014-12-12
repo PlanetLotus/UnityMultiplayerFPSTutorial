@@ -2193,7 +2193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4dcf4580b3c96342854abd0007d48d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standbyCamera: {fileID: 490809669}
+  standbyCamera: {fileID: 490809665}
 --- !u!1001 &1818073089
 Prefab:
   m_ObjectHideFlags: 0

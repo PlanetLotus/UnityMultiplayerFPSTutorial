@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class NetworkManager : MonoBehaviour {
-    public Camera standbyCamera;
+    public GameObject standbyCamera;
 
     private void Start() {
         spawnSpots = GameObject.FindObjectsOfType<SpawnSpot>();
@@ -10,7 +10,6 @@ public class NetworkManager : MonoBehaviour {
     }
 
     private void Connect() {
-        PhotonNetwork.offlineMode = true;
         PhotonNetwork.ConnectUsingSettings("MultiFPS v001");
     }
 
@@ -36,9 +35,11 @@ public class NetworkManager : MonoBehaviour {
     private void SpawnMyPlayer() {
         SpawnSpot mySpawnSpot = spawnSpots[Random.Range(0, spawnSpots.Length)];
         GameObject myPlayer = PhotonNetwork.Instantiate("PlayerController", mySpawnSpot.transform.position, mySpawnSpot.transform.rotation, 0);
-        standbyCamera.enabled = false;
+
+        standbyCamera.SetActive(false);
         ((MonoBehaviour)myPlayer.GetComponent("FPSInputController")).enabled = true;
         ((MonoBehaviour)myPlayer.GetComponent("MouseLook")).enabled = true;
+        ((MonoBehaviour)myPlayer.GetComponent("CharacterMotor")).enabled = true;
         myPlayer.transform.FindChild("Main Camera").gameObject.SetActive(true);
     }
 
