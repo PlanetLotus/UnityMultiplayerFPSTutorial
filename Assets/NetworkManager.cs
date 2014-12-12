@@ -5,6 +5,7 @@ public class NetworkManager : MonoBehaviour {
     public Camera standbyCamera;
 
     private void Start() {
+        spawnSpots = GameObject.FindObjectsOfType<SpawnSpot>();
         Connect();
     }
 
@@ -33,7 +34,13 @@ public class NetworkManager : MonoBehaviour {
     }
 
     private void SpawnMyPlayer() {
-        PhotonNetwork.Instantiate("PlayerController", new Vector3(50, 2, 0), Quaternion.identity, 0);
+        SpawnSpot mySpawnSpot = spawnSpots[Random.Range(0, spawnSpots.Length)];
+        GameObject myPlayer = PhotonNetwork.Instantiate("PlayerController", mySpawnSpot.transform.position, mySpawnSpot.transform.rotation, 0);
         standbyCamera.enabled = false;
+        ((MonoBehaviour)myPlayer.GetComponent("FPSInputController")).enabled = true;
+        ((MonoBehaviour)myPlayer.GetComponent("MouseLook")).enabled = true;
+        myPlayer.transform.FindChild("Main Camera").gameObject.SetActive(true);
     }
+
+    private SpawnSpot[] spawnSpots;
 }
