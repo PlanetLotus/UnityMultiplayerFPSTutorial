@@ -1293,6 +1293,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b6fd423d9c22424696e6fb4136efdbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Speed: 10
+  JumpSpeed: 6
+  Direction: {x: 0, y: 0, z: 0}
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1326,7 +1329,7 @@ MonoBehaviour:
   group: 0
   prefixBackup: -1
   observed: {fileID: 0}
-  synchronization: 3
+  synchronization: 1
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0

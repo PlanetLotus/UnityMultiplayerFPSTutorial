@@ -5,7 +5,7 @@ public class NetworkCharacter : Photon.MonoBehaviour {
 
     // Use this for initialization
     void Start() {
-
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -21,13 +21,18 @@ public class NetworkCharacter : Photon.MonoBehaviour {
             // Our player. Need to send our actual position to network.
             stream.SendNext(transform.position);
             stream.SendNext(transform.rotation);
+            stream.SendNext(animator.GetFloat("Speed"));
+            stream.SendNext(animator.GetBool("Jumping"));
         } else {
             // Someone else's player. Need to receive their position (as of a few milliseconds ago) and update our version of them.
             realPosition = (Vector3)stream.ReceiveNext();
             realRotation = (Quaternion)stream.ReceiveNext();
+            animator.SetFloat("Speed", (float)stream.ReceiveNext());
+            animator.SetBool("Jumping", (bool)stream.ReceiveNext());
         }
     }
 
     private Vector3 realPosition = Vector3.zero;
     private Quaternion realRotation = Quaternion.identity;
+    private Animator animator;
 }
