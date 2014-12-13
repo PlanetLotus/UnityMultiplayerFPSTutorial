@@ -29,10 +29,17 @@ public class NetworkCharacter : Photon.MonoBehaviour {
             realRotation = (Quaternion)stream.ReceiveNext();
             animator.SetFloat("Speed", (float)stream.ReceiveNext());
             animator.SetBool("Jumping", (bool)stream.ReceiveNext());
+
+            if (!gotFirstUpdate) {
+                gotFirstUpdate = true;
+                transform.position = realPosition;
+                transform.rotation = realRotation;
+            }
         }
     }
 
     private Vector3 realPosition = Vector3.zero;
     private Quaternion realRotation = Quaternion.identity;
     private Animator animator;
+    private bool gotFirstUpdate = false;
 }

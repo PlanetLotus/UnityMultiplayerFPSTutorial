@@ -16,7 +16,7 @@ Platform assembly: C:\Users\Matt\Documents\FPS Tutorial\Builds\multifps_Data\Man
 Loading C:\Users\Matt\Documents\FPS Tutorial\Builds\multifps_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
 Platform assembly: C:\Users\Matt\Documents\FPS Tutorial\Builds\multifps_Data\Managed\Photon3Unity3D.dll (this message is harmless)
 Loading C:\Users\Matt\Documents\FPS Tutorial\Builds\multifps_Data\Managed\Photon3Unity3D.dll into Unity Child Domain
-- Completed reload, in  0.064 seconds
+- Completed reload, in  0.055 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
@@ -31,6 +31,14 @@ OnPhotonRandomJoinFailed
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
 OnJoinedRoom
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+We hit: Graphics
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Destroying GO as global. ID: 2
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
@@ -52,12 +60,4 @@ Rethrow as TargetInvocationException: Exception has been thrown by the target of
   at PhotonHandler.Update () [0x00000] in <filename unknown>:0 
  
 (Filename:  Line: -1)
-
-We hit: Graphics
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Destroying GO as global. ID: 1
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 

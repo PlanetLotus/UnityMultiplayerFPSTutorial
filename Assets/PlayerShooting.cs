@@ -34,7 +34,7 @@ public class PlayerShooting : MonoBehaviour {
             }
 
             if (health != null) {
-                health.GetComponent<PhotonView>().RPC("TakeDamage", PhotonTargets.All, Damage);
+                health.GetComponent<PhotonView>().RPC("TakeDamage", PhotonTargets.AllBuffered, Damage);
             }
         }
 
