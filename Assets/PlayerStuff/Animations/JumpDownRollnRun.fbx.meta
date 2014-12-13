@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 14ef6c30f76096646881bd44cf36671e
 ModelImporter:
-  serializedVersion: 15
+  serializedVersion: 16
   fileIDToRecycleName:
     100000: Chest
     100002: chestProxy_geo
@@ -484,6 +484,7 @@ ModelImporter:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     optimizeGameObjects: 0
+    motionNodeName: 
     animationCompression: 3
     animationRotationError: .5
     animationPositionError: .5
@@ -2344,4 +2345,5 @@ ModelImporter:
   lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 0329f9900cf52e1478b395083fa2a255,
     type: 3}
   animationType: 3
+  additionalBone: 0
   userData: 
