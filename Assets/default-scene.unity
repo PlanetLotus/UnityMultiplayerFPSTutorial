@@ -1384,7 +1384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96e1b8d7a7bbb3049beaf4b9de233b56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sniperBulletFXAudio: {fileID: 0}
+  sniperBulletFXPrefab: {fileID: 100004, guid: dbeda78a0d7a54347ba6afe917d65894, type: 2}
 --- !u!1 &1851093717
 GameObject:
   m_ObjectHideFlags: 0
