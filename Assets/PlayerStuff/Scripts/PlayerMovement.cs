@@ -10,6 +10,9 @@ public class PlayerMovement : MonoBehaviour {
     void Start() {
         charController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        if (animator == null) {
+            Debug.LogError("Missing animator component on character prefab.");
+        }
     }
 
     // Update is called once per frame
@@ -25,6 +28,8 @@ public class PlayerMovement : MonoBehaviour {
         if (charController.isGrounded && Input.GetButton("Jump")) {
             verticalVelocity = JumpSpeed;
         }
+
+        AdjustAimAngle();
     }
 
     // Called once per physics loop
@@ -45,6 +50,21 @@ public class PlayerMovement : MonoBehaviour {
         distance.y = verticalVelocity * Time.deltaTime;
 
         charController.Move(distance);
+    }
+
+    private void AdjustAimAngle() {
+        Camera camera = this.GetComponentInChildren<Camera>();
+
+        float aimAngle = 0;
+
+        if (camera.transform.rotation.eulerAngles.x <= 90f) {
+            // We're looking down
+            aimAngle = -camera.transform.rotation.eulerAngles.x;
+        } else {
+            aimAngle = 360 - camera.transform.rotation.eulerAngles.x;
+        }
+
+        animator.SetFloat("AimAngle", aimAngle);
     }
 
     private CharacterController charController;
