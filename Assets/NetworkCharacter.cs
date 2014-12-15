@@ -21,7 +21,7 @@ public class NetworkCharacter : Photon.MonoBehaviour {
             // Our player. Need to send our actual position to network.
             stream.SendNext(transform.position);
             stream.SendNext(transform.rotation);
-            stream.SendNext(animator.GetFloat("Speed"));
+            stream.SendNext(animator.GetFloat("Speed"));    // Getting NRE here when joining with 2nd player
             stream.SendNext(animator.GetBool("Jumping"));
         } else {
             // Someone else's player. Need to receive their position (as of a few milliseconds ago) and update our version of them.

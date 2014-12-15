@@ -5,8 +5,12 @@ public class PlayerShooting : MonoBehaviour {
     public float FireRate = 0.5f;
     public float Damage = 25f;
 
+    private void Start() {
+        fxManager = GameObject.FindObjectOfType<FXManager>();
+    }
+
     // Update is called once per frame
-    void Update() {
+    private void Update() {
         cooldown -= Time.deltaTime;
 
         if (Input.GetButton("Fire1")) {
@@ -36,6 +40,13 @@ public class PlayerShooting : MonoBehaviour {
             if (health != null) {
                 health.GetComponent<PhotonView>().RPC("TakeDamage", PhotonTargets.AllBuffered, Damage);
             }
+
+            // TODO: Store this locally. GetComonent is expensive.
+            fxManager.GetComponent<PhotonView>().RPC("SniperBulletFX", PhotonTargets.All, Camera.main.transform.position, hitPoint);
+        } else {
+            // Didn't hit anything, but should still show FX
+            hitPoint = Camera.main.transform.position + Camera.main.transform.forward * 100f;
+            fxManager.GetComponent<PhotonView>().RPC("SniperBulletFX", PhotonTargets.All, Camera.main.transform.position, hitPoint);
         }
 
         cooldown = FireRate;
@@ -60,4 +71,5 @@ public class PlayerShooting : MonoBehaviour {
     }
 
     private float cooldown = 0f;
+    private FXManager fxManager;
 }
