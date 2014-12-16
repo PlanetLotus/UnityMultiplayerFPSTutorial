@@ -147,14 +147,7 @@ public class NetworkManager : MonoBehaviour {
         ((MonoBehaviour)myPlayer.GetComponent("PlayerMovement")).enabled = true;
         ((MonoBehaviour)myPlayer.GetComponent("PlayerShooting")).enabled = true;
         myPlayer.transform.FindChild("Main Camera").gameObject.SetActive(true);
-        myPlayer.GetComponent<TeamMember>().TeamId = teamId;
-
-        SkinnedMeshRenderer mySkin = myPlayer.transform.GetComponentInChildren<SkinnedMeshRenderer>();
-
-        if (teamId == 1)
-            mySkin.material.color = Color.red;
-        else if (teamId == 2)
-            mySkin.material.color = new Color(.5f, 1f, .5f);
+        myPlayer.GetComponent<PhotonView>().RPC("SetTeamId", PhotonTargets.AllBuffered, teamId);
     }
 
     private SpawnSpot[] spawnSpots;

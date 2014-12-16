@@ -36,4 +36,5 @@ MonoBehaviour:
   - TakeDamage
   - AddChatMessageRPC
   - SniperBulletFX
+  - SetTeamId
   DisableAutoOpenWizard: 0
