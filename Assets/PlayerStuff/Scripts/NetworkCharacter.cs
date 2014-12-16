@@ -15,6 +15,8 @@ public class NetworkCharacter : Photon.MonoBehaviour {
     public Vector3 Direction = Vector3.zero;
     [System.NonSerialized]
     public bool IsJumping = false;
+    [System.NonSerialized]
+    public float AimAngle = 0f;
     private float verticalVelocity = 0f;
 
     // Use this for initialization
@@ -63,6 +65,7 @@ public class NetworkCharacter : Photon.MonoBehaviour {
 
         distance.y = verticalVelocity * Time.deltaTime;
 
+        animator.SetFloat("AimAngle", AimAngle);
         animator.SetFloat("Speed", Direction.magnitude);
 
         charController.Move(distance);

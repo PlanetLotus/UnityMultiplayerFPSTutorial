@@ -32,11 +32,54 @@ public class BotMovement : MonoBehaviour {
             netChar.Direction = destination.transform.position - transform.position;
             netChar.Direction.y = 0;
             netChar.Direction.Normalize();
-
-            transform.rotation = Quaternion.LookRotation(netChar.Direction);
         } else {
             // I believe this is redundant with just setting Direction to zero above...
             netChar.Direction = Vector3.zero;
+        }
+
+        // Default: Look where we're going
+        Vector3 lookDirection = netChar.Direction;
+
+        // If we have an enemy target in range, look that way instead
+        TeamMember closest = null;
+        float dist = 0f;
+
+        foreach (TeamMember teamMember in GameObject.FindObjectsOfType<TeamMember>()) { // SLOW!
+            if (teamMember == GetComponent<TeamMember>())
+                continue;
+
+            // Enemy check
+            if (teamMember.TeamId == 0 || teamMember.TeamId != GetComponent<TeamMember>().TeamId) {
+                // Range check
+                float d = Vector3.Distance(teamMember.transform.position, transform.position);
+                if (d <= aggroRange) {
+
+                    // TODO: Do a raycast to make sure we have line of sight. Shouldn't detect enemy through walls!
+
+                    if (closest == null || d < dist) {
+                        closest = teamMember;
+                        dist = d;
+                    }
+                }
+            }
+        }
+
+        if (closest != null) {
+            lookDirection = closest.transform.position - transform.position;
+        }
+
+        Quaternion lookRotation = Quaternion.LookRotation(lookDirection);
+        lookRotation.eulerAngles = new Vector3(0, lookRotation.eulerAngles.y, 0);
+        transform.rotation = lookRotation;
+
+        if (closest != null) {
+            // Figure out the relative vertical angle to our target and adjust AimAngle
+            Vector3 localLookDirection = transform.InverseTransformPoint(closest.transform.position);
+            float targetAimAngle = Mathf.Atan2(localLookDirection.y, localLookDirection.z) * Mathf.Rad2Deg;
+            netChar.AimAngle = targetAimAngle;
+        } else {
+            // We don't have a target, so just aim straight
+            netChar.AimAngle = 0;
         }
     }
 
@@ -58,4 +101,5 @@ public class BotMovement : MonoBehaviour {
     private static Waypoint[] waypoints;
     private Waypoint destination;
     private float waypointTargetDist = 1f;
+    private float aggroRange = 100000f;
 }

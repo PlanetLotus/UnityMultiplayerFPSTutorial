@@ -4,7 +4,6 @@ using System.Collections;
 public class PlayerMovement : MonoBehaviour {
     // Use this for initialization
     void Start() {
-        animator = GetComponent<Animator>();
         netChar = GetComponent<NetworkCharacter>();
     }
 
@@ -37,9 +36,8 @@ public class PlayerMovement : MonoBehaviour {
             aimAngle = 360 - camera.transform.rotation.eulerAngles.x;
         }
 
-        animator.SetFloat("AimAngle", aimAngle);
+        netChar.AimAngle = aimAngle;
     }
 
     private NetworkCharacter netChar;
-    private Animator animator;
 }
