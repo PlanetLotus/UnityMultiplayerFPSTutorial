@@ -15,8 +15,6 @@ public class PlayerMovement : MonoBehaviour {
         if (netChar.Direction.magnitude > 1f)
             netChar.Direction = netChar.Direction.normalized;
 
-        animator.SetFloat("Speed", netChar.Direction.magnitude);
-
         // Handle jumping
         if (Input.GetButton("Jump")) {
             netChar.IsJumping = true;

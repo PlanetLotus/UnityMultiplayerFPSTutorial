@@ -28,17 +28,15 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400002}
-  - 114: {fileID: 11400006}
   - 114: {fileID: 11400008}
   - 114: {fileID: 11400010}
   - 95: {fileID: 9500002}
   - 143: {fileID: 14300000}
-  - 114: {fileID: 11400002}
-  - 114: {fileID: 11400004}
   - 114: {fileID: 11400012}
   - 114: {fileID: 11400016}
+  - 114: {fileID: 11400002}
   m_Layer: 0
-  m_Name: PlayerController
+  m_Name: BotController
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1423,41 +1421,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 100002}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b6fd423d9c22424696e6fb4136efdbb, type: 3}
+  m_Script: {fileID: 11500000, guid: edbfdf8ac893fc94ea7b209674e96a5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 10
-  JumpSpeed: 6
-  Direction: {x: 0, y: 0, z: 0}
---- !u!114 &11400004
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100002}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e70852498b0965847b15ca36afcc6ca2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &11400006
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100002}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68ec2fe99d1108b9d0006a298d76c639, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  axes: 1
-  sensitivityX: 15
-  sensitivityY: 0
-  minimumX: -360
-  maximumX: 360
-  minimumY: 0
-  maximumY: 0
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1493,6 +1459,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f707c51e9cdd8e4c95d246cc7857300, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Speed: 10
+  JumpSpeed: 6
 --- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1

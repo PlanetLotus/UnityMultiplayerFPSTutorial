@@ -63,6 +63,8 @@ public class NetworkCharacter : Photon.MonoBehaviour {
 
         distance.y = verticalVelocity * Time.deltaTime;
 
+        animator.SetFloat("Speed", Direction.magnitude);
+
         charController.Move(distance);
     }
 
