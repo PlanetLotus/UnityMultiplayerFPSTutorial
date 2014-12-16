@@ -2,11 +2,9 @@
 using System.Collections;
 
 public class PlayerShooting : MonoBehaviour {
-    public float FireRate = 0.5f;
-    public float Damage = 25f;
-
     private void Start() {
         fxManager = GameObject.FindObjectOfType<FXManager>();
+        weaponData = gameObject.GetComponentInChildren<WeaponData>();
     }
 
     // Update is called once per frame
@@ -38,18 +36,27 @@ public class PlayerShooting : MonoBehaviour {
             }
 
             if (health != null) {
-                health.GetComponent<PhotonView>().RPC("TakeDamage", PhotonTargets.AllBuffered, Damage);
+                TeamMember teamMember = hitTransform.GetComponent<TeamMember>();
+                TeamMember myTeamMember = this.GetComponent<TeamMember>();
+
+                if (teamMember == null || teamMember.TeamId == 0 || myTeamMember == null || myTeamMember.TeamId == 0 || teamMember.TeamId != myTeamMember.TeamId) {
+                    health.GetComponent<PhotonView>().RPC("TakeDamage", PhotonTargets.AllBuffered, weaponData.Damage);
+                }
             }
 
             // TODO: Store this locally. GetComonent is expensive.
-            fxManager.GetComponent<PhotonView>().RPC("SniperBulletFX", PhotonTargets.All, Camera.main.transform.position, hitPoint);
+            DoGunFX(hitPoint);
         } else {
             // Didn't hit anything, but should still show FX
             hitPoint = Camera.main.transform.position + Camera.main.transform.forward * 100f;
-            fxManager.GetComponent<PhotonView>().RPC("SniperBulletFX", PhotonTargets.All, Camera.main.transform.position, hitPoint);
+            DoGunFX(hitPoint);
         }
 
-        cooldown = FireRate;
+        cooldown = weaponData.FireRate;
+    }
+
+    private void DoGunFX(Vector3 hitPoint) {
+        fxManager.GetComponent<PhotonView>().RPC("SniperBulletFX", PhotonTargets.All, weaponData.transform.position, hitPoint);
     }
 
     private Transform GetClosestHitObject(Ray ray, out Vector3 hitPoint) {
@@ -72,4 +79,5 @@ public class PlayerShooting : MonoBehaviour {
 
     private float cooldown = 0f;
     private FXManager fxManager;
+    private WeaponData weaponData;
 }
