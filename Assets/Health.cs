@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Health : MonoBehaviour {
-    public float HitPoints = 10f;
+    public float HitPoints = 100f;
 
     [RPC]
     public void TakeDamage(float amount) {
@@ -41,6 +41,8 @@ public class Health : MonoBehaviour {
                     NetworkManager nm = GameObject.FindObjectOfType<NetworkManager>();
                     nm.StandbyCamera.SetActive(true);
                     nm.RespawnTimer = 3f;
+                } else if (gameObject.tag == "Bot") {
+                    Debug.LogError("No bot respawn code exists.");
                 }
 
                 PhotonNetwork.Destroy(gameObject);

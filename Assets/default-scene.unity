@@ -1307,7 +1307,7 @@ Transform:
   m_Children:
   - {fileID: 1892068222}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!114 &1074058951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1821,7 +1821,7 @@ Transform:
   m_Children:
   - {fileID: 545623748}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!1 &1752157064
 GameObject:
   m_ObjectHideFlags: 0
@@ -1928,6 +1928,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StandbyCamera: {fileID: 490809665}
   RespawnTimer: 0
+  botResourceName: BotController
+  botSpawnWaypoint: {fileID: 249942068}
 --- !u!114 &1786664373
 MonoBehaviour:
   m_ObjectHideFlags: 0

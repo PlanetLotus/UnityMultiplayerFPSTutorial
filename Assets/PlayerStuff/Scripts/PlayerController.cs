@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerMovement : MonoBehaviour {
+public class PlayerController : MonoBehaviour {
     // Use this for initialization
     void Start() {
         netChar = GetComponent<NetworkCharacter>();
@@ -22,6 +22,10 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         AdjustAimAngle();
+
+        if (Input.GetButton("Fire1")) {
+            netChar.FireWeapon(Camera.main.transform.position, Camera.main.transform.forward);
+        }
     }
 
     private void AdjustAimAngle() {

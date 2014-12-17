@@ -144,10 +144,12 @@ public class NetworkManager : MonoBehaviour {
 
         StandbyCamera.SetActive(false);
         ((MonoBehaviour)myPlayer.GetComponent("MouseLook")).enabled = true;
-        ((MonoBehaviour)myPlayer.GetComponent("PlayerMovement")).enabled = true;
-        ((MonoBehaviour)myPlayer.GetComponent("PlayerShooting")).enabled = true;
+        ((MonoBehaviour)myPlayer.GetComponent("PlayerController")).enabled = true;
         myPlayer.transform.FindChild("Main Camera").gameObject.SetActive(true);
         myPlayer.GetComponent<PhotonView>().RPC("SetTeamId", PhotonTargets.AllBuffered, teamId);
+
+        GameObject botGO = (GameObject)PhotonNetwork.Instantiate(botResourceName, botSpawnWaypoint.transform.position, botSpawnWaypoint.transform.rotation, 0);
+        ((MonoBehaviour)botGO.GetComponent("BotController")).enabled = true;
     }
 
     private SpawnSpot[] spawnSpots;
@@ -156,4 +158,8 @@ public class NetworkManager : MonoBehaviour {
     private const int maxChatMessages = 5;
     private bool hasPickedTeam = false;
     private int teamId = 0;
+
+    // For bot testing
+    public string botResourceName = "BotController";
+    public Waypoint botSpawnWaypoint;
 }
